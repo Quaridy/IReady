@@ -1,33 +1,33 @@
-let currentImageIndex = 1;
-const totalImages = 8; // Change this to the total number of images you have
+const images = [
+    'Image1.jpg',
+    'Image2.jpg',
+    'Image3.jpg',
+    'Image4.jpg',
+    'Image5.jpg',
+    'Image6.jpg',
+    'Image7.jpg',
+    'Image8.jpg'
+];
+
+let currentIndex = 0;
 
 const imageElement = document.getElementById('image');
-const skipButton = document.getElementById('skipButton');
-const fullscreenButton = document.getElementById('fullscreenButton');
+const nextBtn = document.getElementById('nextBtn');
+const fullscreenBtn = document.getElementById('fullscreenBtn');
 
-function updateImage() {
-    imageElement.src = `Image${currentImageIndex}.jpg`;
-}
-
-skipButton.addEventListener('click', () => {
-    currentImageIndex++;
-    if (currentImageIndex > totalImages) {
-        currentImageIndex = 1; // Loop back to the first image
-    }
-    updateImage();
+nextBtn.addEventListener('click', () => {
+    currentIndex = (currentIndex + 1) % images.length; // Loop back to the first image
+    imageElement.src = images[currentIndex];
 });
 
-fullscreenButton.addEventListener('click', () => {
-    if (!document.fullscreenElement) {
-        document.documentElement.requestFullscreen().catch(err => {
-            console.error(`Error attempting to enable full-screen mode: ${err.message}`);
-        });
-    } else {
-        if (document.exitFullscreen) {
-            document.exitFullscreen();
-        }
+fullscreenBtn.addEventListener('click', () => {
+    if (document.documentElement.requestFullscreen) {
+        document.documentElement.requestFullscreen();
+    } else if (document.documentElement.mozRequestFullScreen) { // Firefox
+        document.documentElement.mozRequestFullScreen();
+    } else if (document.documentElement.webkitRequestFullscreen) { // Chrome, Safari and Opera
+        document.documentElement.webkitRequestFullscreen();
+    } else if (document.documentElement.msRequestFullscreen) { // IE/Edge
+        document.documentElement.msRequestFullscreen();
     }
 });
-
-// Initialize the first image
-updateImage();
