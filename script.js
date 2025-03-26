@@ -26,8 +26,9 @@ function toggleFullScreen() {
     const imageElement = document.getElementById('slideshow-image');
     const fullscreenContainer = document.createElement('div');
     fullscreenContainer.classList.add('fullscreen');
+    
     const fullscreenImage = document.createElement('img');
     fullscreenImage.src = imageElement.src;
-    fullscreenContainer.appendChild(fullscreenImage);
     
-    fullscreenContainer.addEventListener('
+    fullscreenContainer.appendChild(fullscreenImage);
+    document.body.appendChild(fullscreen
