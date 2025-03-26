@@ -1,5 +1,5 @@
 let currentImageIndex = 1;
-const totalImages = 5; // Change this to the total number of images you have
+const totalImages = 26; // Change this to the total number of images you have
 
 document.getElementById('next-button').addEventListener('click', function() {
     currentImageIndex++;
